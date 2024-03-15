@@ -1,6 +1,8 @@
 module github.com/tae2089/kubectl-custom-cli
 
-go 1.20
+go 1.22
+
+toolchain go1.22.0
 
 require k8s.io/cli-runtime v0.29.2
 
