@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"golang.org/x/exp/slices"
+	"slices"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -62,7 +62,7 @@ func CreateRootCmd() *cobra.Command {
 				fmt.Printf("%s", VERSION)
 				return nil
 			}
-			if len(args) > 1 {
+			if len(args) > 0 {
 				filterType = args[0]
 				if !slices.Contains(filterTypes, filterType) {
 					return fmt.Errorf("invalid command")
@@ -92,11 +92,11 @@ func CreateRootCmd() *cobra.Command {
 				return fmt.Errorf("%s is not a supported sortable field.", sortField)
 			}
 			if allNamespaces {
-				if err = util.PrintPodsInfoInAllNameSpace(pods, noHeaders); err != nil {
+				if err = util.PrintPodsInfoInAllNameSpace(pods, noHeaders, filterType); err != nil {
 					return err
 				}
 			} else {
-				if err = util.PrintPodsInfoInSingleNameSpace(pods, noHeaders); err != nil {
+				if err = util.PrintPodsInfoInSingleNameSpace(pods, noHeaders, filterType); err != nil {
 					return err
 				}
 			}
