@@ -29,6 +29,7 @@ type PodInfo struct {
 	// the explicit time.Time type, such as sorting.
 	terminatedTime time.Time
 	RestartCount   string
+	ExitCode       string
 }
 
 func (t Pods) SortByTimestamp() {
@@ -93,6 +94,7 @@ func convertPodsToPodInfo(pods []v1.Pod) []PodInfo {
 					StartTime:      terminated.StartedAt.String(),
 					terminatedTime: terminated.FinishedAt.Time,
 					RestartCount:   strconv.FormatInt(int64(containerStatus.RestartCount), 10),
+					ExitCode:       strconv.FormatInt(int64(containerStatus.LastTerminationState.Terminated.ExitCode), 10),
 				}
 				podInfo = append(podInfo, pi)
 			}
