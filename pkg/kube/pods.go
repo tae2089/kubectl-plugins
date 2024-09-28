@@ -9,7 +9,6 @@ import (
 
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -38,8 +37,7 @@ func (t Pods) SortByTimestamp() {
 	})
 }
 
-func GetRestartdPods(configFlags *genericclioptions.ConfigFlags, namesapce, filterType string) (Pods, error) {
-	client, _, err := getK8sClientAndConfig(configFlags)
+func GetRestartdPods(client *kubernetes.Clientset, namesapce, filterType string) (Pods, error) {
 	pods, err := getPodList(client, namesapce)
 	if err != nil {
 		return nil, err

@@ -8,7 +8,7 @@ import (
 	"k8s.io/client-go/rest"
 )
 
-func getK8sClientAndConfig(configFlags *genericclioptions.ConfigFlags) (*kubernetes.Clientset, *rest.Config, error) {
+func GetK8sClientAndConfig(configFlags *genericclioptions.ConfigFlags) (*kubernetes.Clientset, *rest.Config, error) {
 
 	config, err := configFlags.ToRESTConfig()
 	if err != nil {

@@ -72,7 +72,8 @@ func CreateRootCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			pods, err := kube.GetRestartdPods(KubernetesConfigFlags, nameSpace, filterType)
+			client, _, err := kube.GetK8sClientAndConfig(KubernetesConfigFlags)
+			pods, err := kube.GetRestartdPods(client, nameSpace, filterType)
 			if err != nil {
 				return err
 			}
