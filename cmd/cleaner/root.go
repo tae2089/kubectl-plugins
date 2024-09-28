@@ -60,7 +60,7 @@ func CreateRootCmd() *cobra.Command {
 			return nil
 		},
 	}
-	cmd.Flags().BoolVarP(&allNameSpaces, "all-namespaces", "A", false, "Show OOMKilled containers across all namespaces")
+	cmd.Flags().BoolVarP(&allNameSpaces, "all-namespaces", "A", false, "delete containers that status.phase is succeeded across all namespaces")
 	cmd.Flags().BoolVar(&dryRun, "dry-run", false, "Dry run")
 	KubernetesConfigFlags = genericclioptions.NewConfigFlags(true)
 	KubernetesConfigFlags.AddFlags(cmd.Flags())
